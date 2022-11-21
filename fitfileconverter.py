@@ -87,7 +87,7 @@ def convert_df(df):
     """
     convert df to csv
     """
-    return df.to_csv(index=False, encoding="shift-jis")
+    return df.to_csv(index=False).encode('cp932')
 
 
 def calc_tmp(df):
