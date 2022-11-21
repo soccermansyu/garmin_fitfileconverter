@@ -101,7 +101,7 @@ def calc_tmp(df):
 # explanation
 st.title("ガーミン .Fitファイルを.CSV形式へ変換する")
 st.markdown("# アプリケーションの使い方")
-st.markdown("
+st.markdown("""
 １． ガーミンのランニングウォッチとPCを充電用ケーブルで接続\n
 ２． 「Activity」フォルダから、変換したい.Fitファイルを確認\n
 ３． 以下2通りのどちらかの方法でFitファイルをアップロードする\n
@@ -111,16 +111,16 @@ st.markdown("
 ５． 変換が完了するとDownloadボタンが現れる\n
 ６． Downloadボタンを押してCSVファイルをダウンロードする\n
 ７． PCのダウンロードフォルダにCSVファイルが保存されている\n
-")
+""")
 
 st.markdown("# アプリケーションについての要望・改善等")
-st.markdown("
+st.markdown("""
 本アプリケーションについて、動作不良や要望事項等がありましたら、\n
 以下リンク先「ランニングを科学する」お問い合わせページから\n
 お問い合わせください。\n
 https://shuichi-running.com/contact/\n
 お待ちしております。\n
-")
+""")
 
 # upload .fit file
 uploaded_file = st.file_uploader("upload your .fit file")
