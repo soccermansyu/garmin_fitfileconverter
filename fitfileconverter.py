@@ -99,12 +99,27 @@ def calc_tmp(df):
     return df
 
 # explanation
-st.title("garmin sample app")
+st.title("ガーミン .Fitファイルを.CSV形式へ変換する")
+st.markdown("# アプリケーションの使い方")
 st.markdown("""
-- this app does not have any actual functions
-- this is very basic template that make users upload their .fit data, convert it to dataframe, process and show data, convert the dataframe to csv file, and download the file
-- this app can process only sample data stored in [this directory](https://github.com/YoshimatsuSaito/garmin-sample-streamlit/tree/main/samples)
-- github link: https://github.com/YoshimatsuSaito/garmin-sample-streamlit
+１． ガーミンのランニングウォッチとPCを充電用ケーブルで接続
+２． 「Activity」フォルダから、変換したいFIｔファイルを確認
+３． 以下2通りのどちらかの方法でFitファイルをアップロードする
+ - 本アプリケーションのBrowse filesをクリックし変換したいファイルを選択
+ - 変換したいFIｔファイルをドラッグ&ドロップする
+４． ファイルをアップロードすると、変換処理が行われるため、少し待つ
+５． 変換が完了するとDownloadボタンが現れる
+６． Downloadボタンを押してCSVファイルをダウンロードする
+７． PCのダウンロードフォルダにCSVファイルが保存されている
+""")
+
+st.markdown("# アプリケーションについての要望・改善等")
+st.markdown("""
+本アプリケーションについて、動作不良や要望事項等がありましたら、
+以下リンク先「ランニングを科学する」お問い合わせページから
+お問い合わせください。
+https://shuichi-running.com/contact/
+お待ちしております。
 """)
 
 # upload .fit file
@@ -137,7 +152,7 @@ if uploaded_file is not None:
     st.download_button(
         label="Download",
         data=csv,
-        file_name='sample.csv',
+        file_name='activity_converted.csv',
         mime='text/csv',
     )
 
