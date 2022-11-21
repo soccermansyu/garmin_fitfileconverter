@@ -80,7 +80,6 @@ def load_fit_tmp(path):
     df['上下動[m]'] = df['上下動[m]'] / 1000
     df['ストライド[m]'] = df['ストライド[m]'] / 1000
     df['ピッチ[歩/分]'] *= 2
-    df.to_csv('output.csv', index=False, encoding="shift-jis")
     return df
         
 @st.cache
