@@ -47,7 +47,8 @@ def load_fit_tmp(path):
                         data[field.name] = field.value
                         #data[field.name + '_units'] = field.units
                     datas.append(data)
-    # データクレンジング
+
+# データクレンジング
     df = pd.DataFrame(datas)
     for del_name in df.columns:
         if "unknown" in del_name:
@@ -76,10 +77,13 @@ def load_fit_tmp(path):
         'temperature': '気温[℃]',
         'activity_type': 'アクティビティタイプ'
     })
-    df['接地バランス(右)[%]'] = 100 - df['接地バランス(左)[%]']
-    df['上下動[m]'] = df['上下動[m]'] / 1000
-    df['ストライド[m]'] = df['ストライド[m]'] / 1000
     df['ピッチ[歩/分]'] *= 2
+
+    if '接地バランス(左)[%]' in df.columns:
+        df['接地バランス(右)[%]'] = 100 - df['接地バランス(左)[%]']
+        df['上下動[m]'] = df['上下動[m]'] / 1000
+        df['ストライド[m]'] = df['ストライド[m]'] / 1000
+    
     return df
         
 @st.cache
@@ -99,28 +103,28 @@ def calc_tmp(df):
     return df
 
 # explanation
-st.title("ガーミン .Fitファイルを.CSV形式へ変換する")
-st.markdown("# アプリケーションの使い方")
-st.markdown("""
-１． ガーミンのランニングウォッチとPCを充電用ケーブルで接続\n
-２． 「Activity」フォルダから、変換したい.Fitファイルを確認\n
-３． 以下2通りのどちらかの方法でFitファイルをアップロードする\n
- - 本アプリケーションのBrowse filesをクリックし変換したいファイルを選択
- - 変換したいFIｔファイルをドラッグ&ドロップする
-４． ファイルをアップロードすると変換処理が行われる。少し待機します。\n
-５． 変換が完了するとDownloadボタンが現れる\n
-６． Downloadボタンを押してCSVファイルをダウンロードする\n
-７． PCのダウンロードフォルダにCSVファイルが保存されている\n
-""")
+# st.title("ガーミン .Fitファイルを.CSV形式へ変換する")
+# st.markdown("# アプリケーションの使い方")
+# st.markdown("""
+# １． ガーミンのランニングウォッチとPCを充電用ケーブルで接続\n
+# ２． 「Activity」フォルダから、変換したい.Fitファイルを確認\n
+# ３． 以下2通りのどちらかの方法でFitファイルをアップロードする\n
+#  - 本アプリケーションのBrowse filesをクリックし変換したいファイルを選択
+#  - 変換したいFIｔファイルをドラッグ&ドロップする
+# ４． ファイルをアップロードすると変換処理が行われる。少し待機します。\n
+# ５． 変換が完了するとDownloadボタンが現れる\n
+# ６． Downloadボタンを押してCSVファイルをダウンロードする\n
+# ７． PCのダウンロードフォルダにCSVファイルが保存されている\n
+# """)
 
-st.markdown("# アプリケーションについての要望・改善等")
-st.markdown("""
-本アプリケーションについて、動作不良や要望事項等がありましたら、\n
-以下リンク先「ランニングを科学する」お問い合わせページから\n
-お問い合わせください。\n
-https://shuichi-running.com/contact/\n
-お待ちしております。\n
-""")
+# st.markdown("# アプリケーションについての要望・改善等")
+# st.markdown("""
+# 本アプリケーションについて、動作不良や要望事項等がありましたら、\n
+# 以下リンク先「ランニングを科学する」お問い合わせページから\n
+# お問い合わせください。\n
+# https://shuichi-running.com/contact/\n
+# お待ちしております。\n
+# """)
 
 # upload .fit file
 uploaded_file = st.file_uploader("upload your .fit file")
