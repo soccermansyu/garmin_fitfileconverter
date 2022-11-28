@@ -78,7 +78,8 @@ def load_fit_tmp(path):
         'activity_type': 'アクティビティタイプ'
     })
     df['ピッチ[歩/分]'] *= 2
-
+    df["時刻"] = pd.to_datetime(df["時刻"]).dt.tz_convert('Asia/Tokyo')
+    
     if '接地バランス(左)[%]' in df.columns:
         df['接地バランス(右)[%]'] = 100 - df['接地バランス(左)[%]']
         df['上下動[m]'] = df['上下動[m]'] / 1000
