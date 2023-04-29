@@ -17,12 +17,9 @@ import streamlit as st
 current_dir = os.path.dirname(__file__)
 
 # URLの制限
-import requests
 
-# 現在のURLを取得
-url = requests.get("https://httpbin.org/get").url
-
-# 許可されたURLと現在のURLを表示
+# URLを取得して表示する
+url = st.get_option("browser.serverAddress")
 st.write("現在のURL:", url)
 st.write("許可されたURL: https://shuichi-running.com/garmin-fitfileconverter/")
 
