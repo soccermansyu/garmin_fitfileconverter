@@ -55,9 +55,14 @@ def load_fit_tmp(path):
             df =  df.drop(del_name, axis=1)
         else:
             continue
-    df = df.drop("position_lat", axis=1)
-    df = df.drop("position_long", axis=1)
-    df = df.drop("fractional_cadence", axis=1)
+
+    if "position_lat" in df.columns:
+        df = df.drop("position_lat", axis=1)
+    if "position_long" in df.columns:
+        df = df.drop("position_long", axis=1)
+    if "fractional_cadence" in df.columns:
+        df = df.drop("fractional_cadence", axis=1)
+
     df = df.dropna(how="any")
     df = df.rename(columns={
         'timestamp': '時刻',
@@ -84,9 +89,9 @@ def load_fit_tmp(path):
         df['接地バランス(右)[%]'] = 100 - df['接地バランス(左)[%]']
         df['上下動[m]'] = df['上下動[m]'] / 1000
         df['ストライド[m]'] = df['ストライド[m]'] / 1000
-    
+
     return df
-        
+
 @st.cache
 def convert_df(df):
     """
@@ -102,30 +107,6 @@ def calc_tmp(df):
     """
     df = df.loc[0:, :]
     return df
-
-# explanation
-# st.title("ガーミン .Fitファイルを.CSV形式へ変換する")
-# st.markdown("# アプリケーションの使い方")
-# st.markdown("""
-# １． ガーミンのランニングウォッチとPCを充電用ケーブルで接続\n
-# ２． 「Activity」フォルダから、変換したい.Fitファイルを確認\n
-# ３． 以下2通りのどちらかの方法でFitファイルをアップロードする\n
-#  - 本アプリケーションのBrowse filesをクリックし変換したいファイルを選択
-#  - 変換したいFIｔファイルをドラッグ&ドロップする
-# ４． ファイルをアップロードすると変換処理が行われる。少し待機します。\n
-# ５． 変換が完了するとDownloadボタンが現れる\n
-# ６． Downloadボタンを押してCSVファイルをダウンロードする\n
-# ７． PCのダウンロードフォルダにCSVファイルが保存されている\n
-# """)
-
-# st.markdown("# アプリケーションについての要望・改善等")
-# st.markdown("""
-# 本アプリケーションについて、動作不良や要望事項等がありましたら、\n
-# 以下リンク先「ランニングを科学する」お問い合わせページから\n
-# お問い合わせください。\n
-# https://shuichi-running.com/contact/\n
-# お待ちしております。\n
-# """)
 
 # upload .fit file
 uploaded_file = st.file_uploader("upload your .fit file")
