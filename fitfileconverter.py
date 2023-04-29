@@ -17,12 +17,15 @@ import streamlit as st
 current_dir = os.path.dirname(__file__)
 
 # URLの制限
-import streamlit as st
 
-ctx = st.get_report_ctx()
-if ctx.url != "https://shuichi-running.com/garmin-fitfileconverter/":
-    st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/\nからしかアクセスできません")
-    st.stop()
+if st._is_running_with_streamlit:
+    ctx = st.get_report_ctx()
+    if ctx.url != "https://shuichi-running.com/garmin-fitfileconverter/":
+        st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/\nからしかアクセスできません")
+        st.stop()
+else:
+    st.experimental_rerun()
+
 
 
 def load_fit_tmp(path):
