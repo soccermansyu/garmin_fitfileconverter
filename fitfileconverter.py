@@ -18,15 +18,22 @@ current_dir = os.path.dirname(__file__)
 
 # URLの制限
 
-# 現在のURLを取得
-url = st.get_option("browser.serverAddress")
-if url.startswith("localhost"):
-    url = "https://" + url
+# get_report_ctx()メソッドを使用して、現在のアプリケーションコンテキストを取得する
+ctx = st.get_report_ctx()
 
-# 遷移元URLを取得して表示
-from_url = st.experimental_get_query_params().get("from_url")
-st.write("現在のURL:", url)
-st.write("遷移元URL:", from_url)
+# 現在のURLを取得する
+current_url = ctx.session_report.url
+
+# 遷移元URLを取得する
+previous_url = ctx.session_state.previous_url
+
+# 遷移元URLが存在しない場合は、現在のURLを遷移元URLとして設定する
+if previous_url is None:
+    previous_url = current_url
+
+# 結果を出力する
+st.write("Current URL:", current_url)
+st.write("Previous URL:", previous_url)
 
 # URLをチェックして、許可されたURL以外の場合はアプリを停止
 if url != "https://shuichi-running.com/garmin-fitfileconverter/":
