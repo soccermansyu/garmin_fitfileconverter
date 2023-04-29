@@ -18,10 +18,15 @@ current_dir = os.path.dirname(__file__)
 
 # URLの制限
 
-# URLを取得して表示する
+# 現在のURLを取得
 url = st.get_option("browser.serverAddress")
+if url.startswith("localhost"):
+    url = "https://" + url
+
+# 遷移元URLを取得して表示
+from_url = st.experimental_get_query_params().get("from_url")
 st.write("現在のURL:", url)
-st.write("許可されたURL: https://shuichi-running.com/garmin-fitfileconverter/")
+st.write("遷移元URL:", from_url)
 
 # URLをチェックして、許可されたURL以外の場合はアプリを停止
 if url != "https://shuichi-running.com/garmin-fitfileconverter/":
