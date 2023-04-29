@@ -3,7 +3,6 @@
 
 # In[ ]:
 
-
 import datetime
 import os
 import shutil
@@ -17,24 +16,17 @@ import streamlit as st
 
 current_dir = os.path.dirname(__file__)
 
+# URLの制限
+if st.get_option("browser.serverAddress") != "https://shuichi-running.com/garmin-fitfileconverter/":
+    st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/からしかアクセスできません")
+    st.stop()
+
 def load_fit_tmp(path):
     """
     this is an only sample function
     load fit file and convert to dataframe
     you should change codes below for fit file structure that you expect
     """
-#     list_record = []
-#     with fitdecode.FitReader(path) as fit:
-#         for frame in fit:
-#             if isinstance(frame, fitdecode.records.FitDataMessage):
-#                 if frame.name == "record":
-#                     data = {}
-#                     for field in frame.fields:
-#                         data[field.name] = field.value
-#                         data[field.name + '_units'] = field.units
-#                     datas.append(data)
-#     df = pd.DataFrame(datas)
-#     return df
 
     datas = []
     with fitdecode.FitReader(path) as fit:
