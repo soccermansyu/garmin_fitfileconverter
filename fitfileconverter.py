@@ -16,30 +16,6 @@ import streamlit as st
 
 current_dir = os.path.dirname(__file__)
 
-# URLの制限
-
-# get_report_ctx()メソッドを使用して、現在のアプリケーションコンテキストを取得する
-ctx = st.get_report_ctx()
-
-# 現在のURLを取得する
-current_url = ctx.session_report.url
-
-# 遷移元URLを取得する
-previous_url = ctx.session_state.previous_url
-
-# 遷移元URLが存在しない場合は、現在のURLを遷移元URLとして設定する
-if previous_url is None:
-    previous_url = current_url
-
-# 結果を出力する
-st.write("Current URL:", current_url)
-st.write("Previous URL:", previous_url)
-
-# URLをチェックして、許可されたURL以外の場合はアプリを停止
-if url != "https://shuichi-running.com/garmin-fitfileconverter/":
-    st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/\nからしかアクセスできません")
-    st.stop()
-
 
 
 def load_fit_tmp(path):
