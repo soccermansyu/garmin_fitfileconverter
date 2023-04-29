@@ -19,10 +19,19 @@ current_dir = os.path.dirname(__file__)
 # URLの制限
 import requests
 
+# 現在のURLを取得
 url = requests.get("https://httpbin.org/get").url
+
+# 許可されたURLと現在のURLを表示
+st.write("現在のURL:", url)
+st.write("許可されたURL: https://shuichi-running.com/garmin-fitfileconverter/")
+
+# URLをチェックして、許可されたURL以外の場合はアプリを停止
 if url != "https://shuichi-running.com/garmin-fitfileconverter/":
     st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/\nからしかアクセスできません")
     st.stop()
+
+
 
 def load_fit_tmp(path):
     """
