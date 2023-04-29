@@ -17,13 +17,14 @@ import streamlit as st
 current_dir = os.path.dirname(__file__)
 
 # URLの制限
-if "browser.serverAddress" in st._session_state:
+if hasattr(st, "_session_state") and "browser.serverAddress" in st._session_state:
     app_url = st._session_state["browser.serverAddress"]
     if app_url != "https://shuichi-running.com/garmin-fitfileconverter/":
         st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/\nからしかアクセスできません")
         st.stop()
 else:
     st.experimental_rerun()
+
 
 
 def load_fit_tmp(path):
