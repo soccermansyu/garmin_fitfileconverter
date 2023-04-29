@@ -16,7 +16,18 @@ import streamlit as st
 
 current_dir = os.path.dirname(__file__)
 
+# 許可するURL
+allowed_url = "https://shuichi-running.com/garmin-fitfileconverter/"
 
+# Stateクラスで現在のURLを保存
+current_url = st.experimental_get_query_params().get("url", [""])[0]
+state = st.experimental_get_state()
+state.current_url = current_url
+
+# 許可されたURL以外からのアクセスの場合、エラーメッセージを表示して終了
+if current_url != allowed_url:
+    st.error("Access denied. Invalid URL.")
+    st.stop()
 
 def load_fit_tmp(path):
     """
