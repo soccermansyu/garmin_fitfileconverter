@@ -18,7 +18,8 @@ current_dir = os.path.dirname(__file__)
 
 # URLの制限
 if st.get_option("browser.serverAddress") != "https://shuichi-running.com/garmin-fitfileconverter/":
-    st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/からしかアクセスできません")
+    st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/")
+    st.warning("からしかアクセスできません。")
     st.stop()
 
 def load_fit_tmp(path):
