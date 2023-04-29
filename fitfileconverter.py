@@ -19,8 +19,10 @@ current_dir = os.path.dirname(__file__)
 # URLの制限
 import streamlit as st
 
-if st.script_request_queue.RerunData.rerun:
-    app_url = st.get_url()
+import streamlit as st
+
+if "browser.serverAddress" in st._session_state:
+    app_url = st.get_option("browser.serverAddress")
     if app_url != "https://shuichi-running.com/garmin-fitfileconverter/":
         st.warning("このアプリにアクセスするには、URL：https://shuichi-running.com/garmin-fitfileconverter/\nからしかアクセスできません")
         st.stop()
