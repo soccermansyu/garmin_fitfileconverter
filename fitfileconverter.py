@@ -16,6 +16,16 @@ import streamlit as st
 
 current_dir = os.path.dirname(__file__)
 
+st.write("遷移元のURLは以下の通りです。")
+
+script = """
+<script>
+var referer = window.history.previous;
+document.write(referer);
+</script>
+"""
+st.write(script, unsafe_allow_html=True)
+
 
 def load_fit_tmp(path):
     """
