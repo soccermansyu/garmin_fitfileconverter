@@ -16,16 +16,6 @@ import streamlit as st
 
 current_dir = os.path.dirname(__file__)
 
-st.write("遷移元のURLは以下の通りです。")
-
-script = """
-<script>
-var referer = document.referrer;
-document.write(referer);
-</script>
-"""
-st.markdown(script, unsafe_allow_html=True)
-
 
 def load_fit_tmp(path):
     """
@@ -107,7 +97,7 @@ def calc_tmp(df):
     return df
 
 # upload .fit file
-uploaded_file = st.file_uploader("upload your .fit file")
+uploaded_file = st.file_uploader("あなたの .fit fileをアップロードしてください")
 if uploaded_file is not None:
     # set path
     data_directory_path = Path(current_dir, "data")
