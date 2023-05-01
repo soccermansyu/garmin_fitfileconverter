@@ -19,6 +19,9 @@ st.title("ガーミン ランニングアクティビティデータのFitファ
 st.write("このアプリケーションは、ランニングのアクティビティデータ専用の変換アプリです。\n")
 st.write("バイクや水泳のデータを変換したい場合には、次のページをご利用ください\n")
 st.write("URL(https://soccermansyu-fitfileconverter-ver-2-fitfileconverter-2-ypusxx.streamlit.app/)")
+st.write("本アプリケーションは自作のため、動作不具合がある可能性があります。\n")
+st.write("お問い合わせ・ご要望などがあれば、以下のお問い合わせフォームよりご連絡ください")
+st.write("URL(https://shuichi-running.com/contact/)")
 st.write("\n\n")
 def load_fit_tmp(path):
     """
