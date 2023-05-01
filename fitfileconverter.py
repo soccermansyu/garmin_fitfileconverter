@@ -15,8 +15,7 @@ import plotly.express as px
 import streamlit as st
 
 current_dir = os.path.dirname(__file__)
-
-
+st.title("ガーミン ランニングデータのFitファイル変換をCSVへ変換")
 def load_fit_tmp(path):
     """
     this is an only sample function
@@ -70,7 +69,8 @@ def load_fit_tmp(path):
         'temperature': '気温[℃]',
         'activity_type': 'アクティビティタイプ'
     })
-    df['ピッチ[歩/分]'] *= 2
+    if 'ピッチ[歩/分]' in df.columns:
+        df['ピッチ[歩/分]'] *= 2
     df["時刻"] = pd.to_datetime(df["時刻"]).dt.tz_convert('Asia/Tokyo').astype(str).str[:19]
 
     if '接地バランス(左)[%]' in df.columns:
