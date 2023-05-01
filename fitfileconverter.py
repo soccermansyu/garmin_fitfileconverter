@@ -15,7 +15,10 @@ import plotly.express as px
 import streamlit as st
 
 current_dir = os.path.dirname(__file__)
-st.title("ガーミン ランニングデータのFitファイル変換をCSVへ変換")
+st.title("ガーミン ランニングアクティビティデータのFitファイル変換をCSVへ変換")
+st.write("このアプリケーションは、ランニングのアクティビティデータ専用の変換アプリです。")
+st.write("バイクや水泳のデータを変換したい場合には、次のページをご利用ください")
+st.write("URL：バイクや水泳のデータを変換したい場合には、次のページをご利用ください")
 def load_fit_tmp(path):
     """
     this is an only sample function
