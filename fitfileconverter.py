@@ -19,6 +19,7 @@ st.title("ガーミン ランニングアクティビティデータのFitファ
 st.write("このアプリケーションは、ランニングのアクティビティデータ専用の変換アプリです。\n")
 st.write("バイクや水泳のデータを変換したい場合には、次のページをご利用ください\n")
 st.write("URL(https://soccermansyu-fitfileconverter-ver-2-fitfileconverter-2-ypusxx.streamlit.app/)")
+st.write("\n\n")
 def load_fit_tmp(path):
     """
     this is an only sample function
